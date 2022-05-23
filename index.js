@@ -35,14 +35,14 @@ function rand(hi) {
 function gameProcess() {
   let randomNum = rand(boxNo);
   let target = boxes[randomNum];
-  target.style.backgroundColor = "red";
+  target.style.backgroundColor = "palevioletred";
 }
 
 // There's a wrinkle here: event.target.style only picks up inline styles, and not in <style> tags. MDN recommends using Window.getComputedStyle().
 // Guide: This event-listens a click, checks if the box is red, and if it is, it updates the score and pops the color out.
 let points = 0;
 window.addEventListener("click", function (event) {
-  if (event.target.style.backgroundColor == "red") {
+  if (event.target.style.backgroundColor == "palevioletred") {
     console.log(points++);
     score.innerHTML = points;
     event.target.style.backgroundColor = "";
