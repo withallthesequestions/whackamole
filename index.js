@@ -1,19 +1,20 @@
 /* Notes:
 
 1) I had some real trouble recreating the CSS from the video. I had no idea why. After some investigating, I realized I was using the CSS property "border" and not "outline". It turns out these properties are positioned slightly differently, and create spacing around objects in different ways.
+2) Implemented functionality: "If a box can be selected twice, then it changes to a different color and requires 2 clicks."
 
 */
 
 let game = document.getElementById("game");
 let score = document.getElementById("score");
 
-/* Number of boxes, for-loop with boxes, let htmlVar= "html string" */
+// Number of boxes, for-loop with boxes, let htmlVar= "html string" */
 
 let boxNo = 25;
 for (let i = 0; i < boxNo; i++) {
-  /* create html boxes x 25 */
+  // create 25 html boxes
   let boxHTML = "<div class = 'box'></div>";
-  //insert it in html.
+  //display it in html
   game.innerHTML += boxHTML;
 }
 
@@ -26,7 +27,7 @@ function runGame() {
 }
 runGame();
 
-// The rand function.
+// The rand function. Takes a number 'hi', and returns a random number between 0 and 'hi'
 function rand(hi) {
   return Math.floor(Math.random() * hi);
 }
@@ -35,16 +36,29 @@ function rand(hi) {
 function gameProcess() {
   let randomNum = rand(boxNo);
   let target = boxes[randomNum];
-  target.style.backgroundColor = "palevioletred";
+  if (target.style.backgroundColor == !"lightsalmon") {
+    target.style.backgroundColor = "lightsalmon";
+  } else {
+    target.style.backgroundColor = "indianred";
+  }
 }
 
 // There's a wrinkle here: event.target.style only picks up inline styles, and not in <style> tags. MDN recommends using Window.getComputedStyle().
 // Guide: This event-listens a click, checks if the box is red, and if it is, it updates the score and pops the color out.
 let points = 0;
 window.addEventListener("click", function (event) {
-  if (event.target.style.backgroundColor == "palevioletred") {
+  if (event.target.style.backgroundColor == "lightsalmon") {
     console.log(points++);
     score.innerHTML = points;
     event.target.style.backgroundColor = "";
+  }
+});
+
+// Doubleclick cases, when the tile is extra-red.
+window.addEventListener("click", function (event) {
+  if (event.target.style.backgroundColor == "indianred") {
+    console.log(points++);
+    score.innerHTML = points;
+    event.target.style.backgroundColor = "lightsalmon";
   }
 });
