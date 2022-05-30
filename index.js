@@ -1,12 +1,21 @@
 /* Notes:
 
 1) I had some real trouble recreating the CSS from the video. I had no idea why. After some investigating, I realized I was using the CSS property "border" and not "outline". It turns out these properties are positioned slightly differently, and create spacing around objects in different ways.
-2) Implemented functionality: "If a box can be selected twice, then it changes to a different color and requires 2 clicks."
+2) Implemented functionality: 
+    * "If a box can be selected twice, then it changes to a different color and requires 2 clicks."
+    * The game has an opening screen and a start button (and title)
 
 */
 
 let game = document.getElementById("game");
 let score = document.getElementById("score");
+
+// Start dialog
+
+document.getElementById("start").addEventListener("click", function (event) {
+  console.log("Clicked");
+  runGame();
+});
 
 // Number of boxes, for-loop with boxes, let htmlVar= "html string" */
 
@@ -25,7 +34,6 @@ function runGame() {
   /* set interval where red boxes turn up. */
   setInterval(gameProcess, 1000);
 }
-runGame();
 
 // The rand function. Takes a number 'hi', and returns a random number between 0 and 'hi'
 function rand(hi) {
