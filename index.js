@@ -48,6 +48,9 @@ function gameProcess() {
     target.style.backgroundColor = "lightsalmon";
   } else {
     target.style.backgroundColor = "indianred";
+    // This pushes a background image of a mole when the square gets deep red. The basic logic works, but the visual effect of this particular picture isn't amazing.
+    target.style.backgroundImage =
+      "url(http://www.clker.com/cliparts/2/7/c/3/13189594971286782138Furry%20Mole.svg.med.png)";
   }
 }
 
@@ -59,6 +62,7 @@ window.addEventListener("click", function (event) {
     console.log(points++);
     score.innerHTML = points;
     event.target.style.backgroundColor = "";
+    event.target.style.backgroundImage = "";
   }
 });
 
@@ -68,5 +72,6 @@ window.addEventListener("click", function (event) {
     console.log(points++);
     score.innerHTML = points;
     event.target.style.backgroundColor = "lightsalmon";
+    target.style.backgroundImage = none;
   }
 });
