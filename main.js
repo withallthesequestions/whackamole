@@ -72,6 +72,5 @@ window.addEventListener("click", function (event) {
     console.log(points++);
     score.innerHTML = points;
     event.target.style.backgroundColor = "lightsalmon";
-    target.style.backgroundImage = none;
   }
 });
